@@ -17,9 +17,9 @@ public class Ejecutor {
     public static void main(String[] args) {
         String nombreArchivo = "hospitales.txt";
 
-        Hospital h1 = new Hospital("Hospital Isidro ayora", 45, 304.5);
-        Hospital h2 = new Hospital("Hospital UTPL", 67, 857.6);
-        Hospital h3 = new Hospital("Hospital Loja", 56, 756.4);
+        Hospital h1 = new Hospital("Hospital de Luis vernaza", 45, 304.5);
+        Hospital h2 = new Hospital("Hospital de Isidro Ayora", 67, 857.6);
+        Hospital h3 = new Hospital("Hospital de Trapichillo", 56, 756.4);
 
         Hospital[] lista = {h1, h2, h3};
 

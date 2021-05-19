@@ -96,7 +96,8 @@ public class ArchivoLectura {
         String cadena = "Lista de Hospitales:\n";
 
         for (int i = 0; i < obtenerLista().size(); i++) {
-            cadena = String.format("%s(%d) %s ; %d| %.2f\n", cadena,
+            cadena = String.format("%s(%d) Nombre: %s - Camas: %d - "
+                    + "Presupuesto: %.2f\n", cadena,
                     i + 1,
                     obtenerLista().get(i).obtenerNombre(),
                     obtenerLista().get(i).obtenerNumeroCamas(),
