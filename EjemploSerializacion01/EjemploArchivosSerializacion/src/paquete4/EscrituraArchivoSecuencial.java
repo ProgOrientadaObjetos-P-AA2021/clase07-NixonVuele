@@ -3,37 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete2;
+package paquete4;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete1.Profesor;
 
 /**
  *
- * @author reroes
+ * @author nixon
  */
 public class EscrituraArchivoSecuencial {
 
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Profesor registroProfesor;
-    private ArrayList<Profesor> listaProfesores;
+    private Hospital registro;
+    private ArrayList<Hospital> ListaHospitales;
 
-    public EscrituraArchivoSecuencial(String nombreArc) {
-        nombreArchivo = nombreArc;
-        establecerListaProfesores(); // obtener los valores (objetos)
-        // que tiene el archivo.
+    public EscrituraArchivoSecuencial(String n) {
+        nombreArchivo = n;
+        establecerListaHospitales();
+        // sacar la información del archivo, previo a volver 
+        // a trabajar con el mimso.
         try // abre el archivo
         {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
-            if (obtenerListaProfesores().size() > 0) {
-                for (int i = 0; i < obtenerListaProfesores().size(); i++) {
-                    establecerRegistroProfesor(obtenerListaProfesores().get(i));
+            if (obtenerListaHospitales().size() > 0) {
+                for (int i = 0; i < obtenerListaHospitales().size(); i++) {
+                    establecerRegistro(obtenerListaHospitales().get(i));
                     establecerSalida();
                 }
             }
@@ -47,36 +47,34 @@ public class EscrituraArchivoSecuencial {
         nombreArchivo = n;
     }
 
-    public void establecerRegistroProfesor(Profesor p) {
-        registroProfesor = p;
+    public void establecerRegistro(Hospital n) {
+        registro = n;
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(registroProfesor); // envía el registro como 
-            // objeto al archivo
+            salida.writeObject(registro); // envía el registro como salida
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
     }
 
-    // en el atributo listaProfesores obtenemos los registros 
-    // del archivo
-    public void establecerListaProfesores() {
+    public void establecerListaHospitales() {
         LecturaArchivoSecuencial l = new LecturaArchivoSecuencial(
                 obtenerNombreArchivo());
-        l.establecerProfesores();
-        listaProfesores = l.obtenerProfesores();
+        l.establecerListaHospitales();
+        ListaHospitales = l.obtenerListaHospitales();
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
 
-    public ArrayList<Profesor> obtenerListaProfesores() {
-        return listaProfesores;
+    public ArrayList<Hospital> obtenerListaHospitales() {
+        return ListaHospitales;
     }
 
+    // agrega registros al archivo
     public ObjectOutputStream obtenerSalida() {
         return salida;
     }
